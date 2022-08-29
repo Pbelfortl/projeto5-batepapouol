@@ -97,8 +97,9 @@ function showParticipants (response) {
 
     const participantsArr = response.data;
     const showParticipants = document.querySelector('.participants');
+    showParticipants.innerHTML = '';
 
-    for (i=0; i<participantsArr; i++) {
+    for (i=0; i<participantsArr.length; i++) {
         showParticipants.innerHTML += `<div class="onlinePart">${participantsArr[i].name}</div>`
     }
 }
