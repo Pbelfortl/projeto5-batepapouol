@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bate-papo UOL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="loginScreen">
+            <img class="imgScreen" src="./imgs/logoUol.png">
+            <input class="loginName" placeholder="Digite seu nome">
+            <button class="enter" onclick="enter()">Entrar</button>
+        </div>
+        <div class="topBar">
+            <img class="logoTop" src="./imgs/logo 1.png">
+            <div  onclick="showContacts()"><img class="chatIcon" src="./imgs/VectorChat.png"></div>
+        </div>
+        <div class="chatBox">
+            <div class="messageBox">entrando na sala...</div>
+        </div>
+        <div class="typeBar">
+            <input class="typeMessage" placeholder="Escreva aqui...">
+            <button class="sendMessage" onclick="sendMessage()"><img class="sendButton" src="./imgs/VectorSend.png"></button>
+        </div>
+        <div class="contacts">
+            <div class="target">
+                <p>Escolha um contato para enviar mensagem:</p>
+                <div class=""></div>
+            </div>
+            <div class="visibility">
+                <p><strong>Escolha a visivilidade:</strong></p>
+                <div onclick="checkboxAdd(this)">Público<img class="checkBox" src="./imgs/VectorCheck.png"></div>
+                <div onclick="checkboxAdd(this)">Reservado<img class="checkBox" src="./imgs/VectorCheck.png"></div>
+            </div>
+        </div>
+        <div class="closeContacts" onclick="showContacts()"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
