@@ -13,21 +13,25 @@ function enter () {
     enterScreen = document.querySelector('.loginScreen');
     enterScreen.classList.add('hide');
     userRegist();
+    setInterval(getParticipants, 15000);
     setInterval(catchMessages, 3000)
 }
 
 function userRegist () {
     
-    const userName = {name: nome}
-    const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', userName)
+    const userName = {name: nome};
+    const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', userName);
 
-    request.then(setInterval(keepConection, 5000));
+    request.then(setInterval(keepConection,5000));
     request.catch(erro400);
 }
 
 function keepConection () {
-    const userName = {name: nome}
-    const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', userName)
+    const userName = {name: nome};
+    const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', userName);
+
+    request.then();
+    request.catch();
 }
 
 function erro400 () {
@@ -41,18 +45,18 @@ function catchMessages () {
 
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
 
-    promise.then(displayMessages)
-    promise.catch(messagesError)
+    promise.then(displayMessages);
+    promise.catch(messagesError);
 
 }
 
 function messagesError () {
-    alert('Erro ao buscar mensagens!')
+    alert('Erro ao buscar mensagens!');
 }
 
 function displayMessages (response) {
 
-    let msgArr = response.data
+    let msgArr = response.data;
 
     let insertMsg = document.querySelector('.chatBox');
     insertMsg.innerHTML = '';
@@ -69,7 +73,7 @@ function sendMessage() {
 
     const message = {
         from: nome,
-        to: 'Todos',
+        to: 'todos',
         text: textMessage,
         type: 'message'
     };
@@ -77,5 +81,24 @@ function sendMessage() {
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', message);
 
     promise.then(catchMessages);
-    promise.catch(window.location.reload());
+    promise.catch(console.log('ocorreu um erro'));
+    document.querySelector('.typeMessage').value = "";
+}
+
+function getParticipants () {
+
+    const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants');
+
+    promise.then(showParticipants);
+    promise.catch(console.log('não foi posível obter os participantes!'));
+}
+
+function showParticipants (response) {
+
+    const participantsArr = response.data;
+    const showParticipants = document.querySelector('.participants');
+
+    for (i=0; i<participantsArr; i++) {
+        showParticipants.innerHTML += `<div class="onlinePart">${participantsArr[i].name}</div>`
+    }
 }
